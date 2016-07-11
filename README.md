@@ -1,3 +1,3 @@
-# Classes
+# Class Descriptions and Languages Used
 
-This is where I list classes I took, code I wrote for them, and what was accomplished.
+<b>CS 261:</b> Data Structures (Languages: C)
