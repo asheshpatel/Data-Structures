@@ -21,29 +21,30 @@
 
 int main()
 {
-  int n, i= 2, count, c;     //input, integers, counter variables
+    int n, i= 2, count, c;     //input, integers, counter variables
     
-  printf("Enter the upper limit of prime numbers:\n");     //retrieve upper limit
-  scanf("%d",&n);
+    printf("Enter the upper limit of prime numbers:\n");     //retrieve upper limit
+    scanf("%d",&n);
     
-  if (n >= 2)     //check that upper limit is high enough
-  {
-    printf("Prime numbers smaller or equal to %d are:\n", n);
-  }
-    
-  //only continue if number is under upper limit
-  for (count = 1; count < n; count++)
-  {
-    for (c = 2; c <= i - 1; c++)    //check that int i is not divisible
-    {                               //by any ints leading up to itself
-      if (i % c == 0)
-        break;
+    if (n >= 2)     //check that upper limit is high enough
+    {
+        printf("Prime numbers smaller or equal to %d are:\n", n);
     }
     
-      if (c == i)                 //if loop was only stopped by int i, being divisble by self, i is prime
-        printf("%d\n",i);
-    i++;     //check next int
-  }
-  
-  return 0;
+    //only continue if number is under upper limit
+    for (count = 1; count < n; count++)
+    {
+        for (c = 2; c <= i - 1; c++)    //check that int i is not divisible
+        {                               //by any ints leading up to itself
+            if (i % c == 0)
+                break;
+        }
+        if (c == i)                 //if loop was only stopped by int i
+        {                           //being divisble by self, i is prime
+            printf("%d\n",i);
+        }
+        i++;     //check next int
+    }
+    
+    return 0;
 }
