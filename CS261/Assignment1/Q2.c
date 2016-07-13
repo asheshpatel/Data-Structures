@@ -3,7 +3,7 @@
  * Date: June 27, 2016
  * Solution description: passing variables by reference to change
  * the variables in main vs. passing variables by value to not
- * the variables in main.
+ * change the variables in main.
  */
 
 #include <stdio.h>
