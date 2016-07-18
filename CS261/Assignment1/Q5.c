@@ -23,14 +23,12 @@ char toLowerCase(char ch)
 void sticky(char* word)
 {
     /*Convert to sticky caps*/
-    for (int c = 0; c < 50; c = c + 2)
+    int c = 0;
+    while (word[c] != '/0')
     {
-        if (word[c] > 90)
+        if (c % 2 == 0 && word[c] > 90)
             word[c] = toUpperCase(word[c]);
-    }
-    for (int c = 1; c < 50; c = c + 2)
-    {
-        if (word[c] < 97)
+        if (c % 2 != 0 && word[c] < 97)
             word[c] = toLowerCase(word[c]);
     }
 }
