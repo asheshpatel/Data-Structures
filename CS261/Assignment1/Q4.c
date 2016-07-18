@@ -18,7 +18,8 @@ struct student
 void sort(struct student* students, int n)
 {
     /*Sort the n students based on their score*/
-    int temp;
+    int tempScore;
+    int tempID;
     _Bool swap;
     
     do
@@ -28,9 +29,12 @@ void sort(struct student* students, int n)
         {
             if (students[c].score > students[c + 1].score)
             {
-                temp = students[c].score;
+                tempScore = students[c].score;
                 students[c].score = students[c + 1].score;
-                students[c + 1].score = temp;
+                students[c + 1].score = tempScore;
+                tempID = students[c].id;
+                students[c].id = students[c + 1].id;
+                students[c + 1].id = tempID;
                 swap = 1;
             }
         }
