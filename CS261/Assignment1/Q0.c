@@ -16,44 +16,37 @@
  * fooA: prints the value of x, the address of x, 
  * and the address of the pointer.
  *
- * parameters: pointer to x
- * returns: nothing
+ * parameters: pointer to x.
+ * returns: nothing.
  ***********************************************************/
  
 void fooA(int* iptr)
 {
-    /*Print the value pointed to by iptr*/
-    printf("%i\n", *iptr);
-    
-    /*Print the address pointed to by iptr*/
-    printf("%p\n", &(*iptr));
-    
-    /*Print the address of iptr itself*/
-    printf("%p\n", iptr);
+    printf("%i\n", *iptr);                                   // print the value pointed to by pointer
+
+    printf("%p\n", &(*iptr));                                // print the address pointed to by pointer
+
+    printf("%p\n", iptr);                                    // print the address of the pointer itself
 }
 
 
 /***********************************************************
- * main function: declares an integer x, prints the address
+ * main: declares an integer x, prints the address
  * and value of x.
  *
- * parameters: nothing
- * returns: nothing
+ * parameters: nothing.
+ * returns: nothing.
  ***********************************************************/
  
 int main()
 {
-    /*declare an integer x*/
-    int x = 3;
+    int x = 3;                                                // declare and initialize x
     
-    /*print the address of x*/
-    printf("%p\n", &x);
-    
-    /*Call fooA() with the address of x*/
-    fooA(&x);
-    
-    /*print the value of x*/
-    printf("%i\n", x);
+    printf("%p\n", &x);                                       // print address of x
+
+    fooA(&x);                                                 // call fooA with address of x
+
+    printf("%i\n", x);                                        // print the value of x
     
     return 0;
 }
