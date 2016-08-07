@@ -1,50 +1,81 @@
-/* CS261- Assignment 1 - Q.5*/
-/* Name: Kelsey Helms
- * Date: June 27, 2016
- * Solution description: Takes a word and makes it
- * alternating upper and lower case.
- */
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    June 27, 2016
+ * Filename:        Q5.c
+ *
+ * Overview:
+ * This program takes a word from user and makes it 
+ * "sticky caps," alternating upper and lower case letters.
+ ************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/*converts ch to upper case, assuming it is in lower case currently*/
+
+/***********************************************************
+ * toUpperCase: converts lower case to upper case.
+ *
+ * parameters: char.
+ * returns: char.
+ ***********************************************************/
+ 
 char toUpperCase(char ch)
 {
     return ch-'a'+'A';
 }
 
-/*converts ch to lower case, assuming it is in upper case currently*/
+
+/***********************************************************
+ * toLowerCase: converts upper case to lower case.
+ *
+ * parameters: char.
+ * returns: char.
+ ***********************************************************/
+
 char toLowerCase(char ch)
 {
     return ch-'A'+'a';
 }
 
+
+/***********************************************************
+ * sticky: converts a word to stick caps (alternating
+ * upper and lower case letters).
+ *
+ * parameters: pointer to array and size of struct.
+ * returns: none.
+ ***********************************************************/
+ 
 void sticky(char* word)
 {
-    /*Convert to sticky caps*/
-    int c = 0;
-    while (word[c] != '/0')
+    int c = 0;                                                  // count position of letters
+    while (word[c] != '/0')                                     // search every letter
     {
-        if (c % 2 == 0 && word[c] > 90)
+        if (c % 2 == 0 && word[c] > 90)                         // if even letters are lower case, convert to upper case
             word[c] = toUpperCase(word[c]);
-        if (c % 2 != 0 && word[c] < 97)
+        if (c % 2 != 0 && word[c] < 97)                         // if odd letters are upper case, convert to lower case
             word[c] = toLowerCase(word[c]);
     }
 }
 
+
+/***********************************************************
+ * main: reads in word from keyboard, then prints 
+ * sticky caps versions of word.
+ *
+ * parameters: word.
+ * returns: none.
+ ***********************************************************/
+ 
 int main()
 {
-    /*Read word from the keyboard using scanf*/
-    char word[50];
+    char word[50];                                              // char array to hold word
     printf("Please enter a word:\n"); fflush(stdout);
-    scanf("%s", word);
-    
-    /*Call sticky*/
-    sticky(word);
-    
-    /*Print the new word*/
-    printf("%s", word);
+    scanf("%s", word);                                          // get word from user
+
+    sticky(word);                                               // pass word by reference
+
+    printf("%s", word);                                         // print sticky caps word
     
     return 0;
 }
