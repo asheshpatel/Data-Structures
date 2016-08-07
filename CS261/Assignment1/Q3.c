@@ -1,27 +1,37 @@
-/* CS261- Assignment 1 - Q.3*/
-/* Name: Kelsey Helms
- * Date: June 27, 2016
- * Solution description: creates an array of random ints
- * then sorts the array in ascending order.
- */
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    June 27, 2016
+ * Filename:        Q3.c
+ *
+ * Overview:
+ * This program creates an array of random ints then
+ * sorts the array in ascending order.
+ ************************************************************/
 
 #include <stdio.h>
 #include<stdlib.h>
 #include<math.h>
 
 
+/***********************************************************
+ * sort: sorts the array in ascending order
+ *
+ * parameters: pointer to array and size of array.
+ * returns: none.
+ ***********************************************************/
+
 void sort(int* number, int n)
 {
     /*Sort the given array number, of length n*/
-    int temp;
-    _Bool swap;
+    int temp;                                                   // temp int to store values during swap
+    _Bool swap;                                                 // bool to indicate swap
     
-    do
+    do                                                          // continue comparing if swap occurred
     {
         swap = 0;
-        for (int c = 0; c < n - 1; c++)
+        for (int c = 0; c < n - 1; c++)                         // compare all elements
         {
-            if (number[c] > number[c + 1])
+            if (number[c] > number[c + 1])                      //swap if out of order
             {
                 temp = number[c];
                 number[c] = number[c + 1];
@@ -32,27 +42,30 @@ void sort(int* number, int n)
     } while (swap == 1);
 }
 
+
+/***********************************************************
+ * main: creates array of random numbers, prints array,
+ * then prints array after sorting.
+ *
+ * parameters: none.
+ * returns: none.
+ ***********************************************************/
+ 
 int main()
 {
-    /*Declare an integer n and assign it a value of 20.*/
-    int n = 20;
-    
-    /*Allocate memory for an array of n integers using malloc.*/
-    int *array = malloc(n);
-    
-    /*Fill this array with random numbers, using rand().*/
-    for (int c = 0; c < 20; c++)
+    int n = 20;                                                 // size of array
+
+    int *array = malloc(n);                                     // allocate memory for array
+
+    for (int c = 0; c < 20; c++)                                // fill array with random numbers
         array[c] = rand() % 50;
-    
-    /*Print the contents of the array.*/
-    for (int c = 0; c < 20; c++)
+
+    for (int c = 0; c < 20; c++)                                // print array
         printf("%i ", array[c]);
+
+    sort(array, n);                                             // pass array by reference, and pass size of array
     
-    /*Pass this array along with n to the sort() function of part a.*/
-    sort(array, n);
-    
-    /*Print the contents of the array.*/
-    printf("\n\n");
+    printf("\n\n");                                             // print array
     for (int c = 0; c < 20; c++)
         printf("%i ", array[c]);
     
