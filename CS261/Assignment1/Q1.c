@@ -1,6 +1,6 @@
 /***********************************************************
  * Author:          Kelsey Helms
- * Date Created:    July 27, 2016
+ * Date Created:    June 27, 2016
  * Filename:        Q1.c
  *
  * Overview:
