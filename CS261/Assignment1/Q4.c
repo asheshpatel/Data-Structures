@@ -1,9 +1,12 @@
-/* CS261- Assignment 1 - Q.4*/
-/* Name: Kelsey Helms
- * Date: June 27, 2016
- * Solution description: create an array with student ids and scores
- * then sort array in ascending score order.
- */
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    June 27, 2016
+ * Filename:        Q4.c
+ *
+ * Overview:
+ * This program creates an array with student IDs and 
+ * scores, then sorts array in ascending score order 
+ ************************************************************/
 
 #include <stdio.h>
 #include<stdlib.h>
@@ -15,24 +18,31 @@ struct student
     int score;
 };
 
+
+/***********************************************************
+ * sort: sorts the array by ascending score order
+ *
+ * parameters: pointer to array and size of struct.
+ * returns: none.
+ ***********************************************************/
+ 
 void sort(struct student* students, int n)
 {
-    /*Sort the n students based on their score*/
-    int tempScore;
-    int tempID;
-    _Bool swap;
+    int tempScore;                                              // int tempScore to store score while swapping
+    int tempID;                                                 // int tempID to store ID while swapping
+    _Bool swap;                                                 // check if swap has occurred
     
-    do
+    do                                                          // keep comparing if swap has occurred
     {
         swap = 0;
-        for (int c = 0; c < n - 1; c++)
+        for (int c = 0; c < n - 1; c++)                         // compare every student
         {
-            if (students[c].score > students[c + 1].score)
+            if (students[c].score > students[c + 1].score)      // swap if scores not in ascending order
             {
-                tempScore = students[c].score;
+                tempScore = students[c].score;                  // swap score
                 students[c].score = students[c + 1].score;
                 students[c + 1].score = tempScore;
-                tempID = students[c].id;
+                tempID = students[c].id;                        // swap ID
                 students[c].id = students[c + 1].id;
                 students[c + 1].id = tempID;
                 swap = 1;
@@ -41,24 +51,31 @@ void sort(struct student* students, int n)
     } while (swap == 1);
 }
 
+
+/***********************************************************
+ * main: creates array of struct student with randomly 
+ * generated IDs and scores, prints the array, then 
+ * prints the array after sorting.
+ *
+ * parameters: none.
+ * returns: none.
+ ***********************************************************/
+ 
 int main()
 {
-    /*Declare an integer n and assign it a value.*/
-    int n = 5;
-    
-    /*Allocate memory for n students using malloc.*/
-    struct student *students = malloc(n * sizeof(struct student));
-    
-    /*Generate random IDs and scores for the n students, using rand().*/
-    int used[5] = {0, 0, 0};
+    int n = 5;                                                  // size of array
+                                                                // allocate memory for students
+    struct student *students = malloc(n * sizeof(struct student)); 
+
+    int used[5] = {0, 0, 0};                                    // array of used numbers
     int id;
     _Bool flag;
-    for (int c = 0; c < n; c++)
+    for (int c = 0; c < n; c++)                                 // assign every student
     {
-        do
+        do                                                      // continue generating until number is unique
         {
             flag = 0;
-            id = rand() % 10 + 1;
+            id = rand() % 10 + 1;                               // generate ID between 1-10
             for (int i = 0; i < 5; i++)
             {
                 if (id == used[i])
@@ -66,22 +83,19 @@ int main()
             }
         } while (flag == 1);
         
-        used[c] = id;
-        students[c].id = id;
-        students[c].score = rand() % 101;
+        used[c] = id;                                           // mark ID number as used
+        students[c].id = id;                                    // set ID
+        students[c].score = rand() % 101;                       // generate score between 0-100 and set score
     }
-    
-    /*Print the contents of the array of n students.*/
+
+    for (int c = 0; c < n; c++)                                 // print array of students
+        printf("ID %i Score %i\n", students[c].id, students[c].score);
+
+    sort(students, n);                                          // pass by reference and size of struct
+
+    printf("\n");                                               // print array of students
     for (int c = 0; c < n; c++)
         printf("ID %i Score %i\n", students[c].id, students[c].score);
     
-    /*Pass this array along with n to the sort() function*/
-    sort(students, n);
-    
-    /*Print the contents of the array of n students.*/
-    printf("\n");
-    for (int c = 0; c < n; c++)
-        printf("ID %i Score %i\n", students[c].id, students[c].score);
-    
-    free(students);
+    free(students);                                             // deallocate memory of array
 }    
