@@ -1,53 +1,62 @@
-/* CS261- Assignment 1 - Q.2*/
-/* Name: Kelsey Helms
- * Date: June 27, 2016
- * Solution description: passing variables by reference to change
- * the variables in main vs. passing variables by value to not
- * change the variables in main.
- */
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    June 27, 2016
+ * Filename:        Q2.c
+ *
+ * Overview:
+ * This program prints three values, uses a function to 
+ * changes two by pointer and one by returning, prints
+ * the returned value, then prints the original variables
+ ************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/***********************************************************
+ * foo: doubles value pointed to by first pointer, halves 
+ * value pointed to by second pointer, and sets variable
+ * equal to sum of values pointed to by both pointers.
+ *
+ * parameters: two pointers and one variable.
+ * returns: one variable.
+ ***********************************************************/
+ 
 int foo(int* a, int* b, int c)
 {
-    /*Set a to double its original value*/
-    *a = *a * 2;
-    
-    /*Set b to half its original value*/
-    *b = *b / 2;
-    
-    /*Assign a+b to c*/
-    c = *a + *b;
-    
-    /*Return c*/
+    *a = *a * 2;                                                // sets a to double original value
+
+    *b = *b / 2;                                                // sets b to half original value
+
+    c = *a + *b;                                                // assigns c to sum of a + b
+
     return c;
 }
 
+
+/***********************************************************
+ * main: prints values of three variables, prints value
+ * returned by foo, then prints values of three
+ * variables again.
+ *
+ * parameters: none.
+ * returns: none.
+ ***********************************************************/
+ 
 int main()
 {
-    /*Declare three integers x,y and z and initialize them to 5, 6, 7 respectively*/
-    int x = 5;
-    int y = 6;
+    int x = 5;                                                  // declare and initialize three variables and a value to 
+    int y = 6;                                                  // capture returned value
     int z = 7;
     int returned;
+
+    printf("%i\n%i\n%i\n", x, y, z);                            // print values of variables
     
-    /*Print the values of x, y and z*/
-    printf("%i\n%i\n%i\n", x, y, z);
+    returned = foo(&x, &y, z);                                  // pass addresses of a and b and value of c to foo
+
+    printf("%i\n", returned);                                   // print value returned by foo
+
+    printf("%i\n%i\n%i\n", x, y, z);                            // print values of variables
     
-    /*Call foo() appropriately, passing x,y,z as parameters*/
-    returned = foo(&x, &y, z);
-    
-    /*Print the value returned by foo*/
-    printf("%i\n", returned);
-    
-    /*Print the values of x, y and z again*/
-    printf("%i\n%i\n%i\n", x, y, z);
-    
-    /*Is the return value different than the value of z?  Why?
-     Answer: z was not passed by reference, therefore the z in main
-     did not change. The returned value is that of the new a plus
-     the new b inside of foo
-     */
     return 0;
 }
