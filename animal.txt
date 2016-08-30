@@ -1,0 +1,15 @@
+Is it big?,10000
+Does it live in a cage?,15000
+Does it eat grass?,5000
+Does it meow?,16000
+Does it chirp?,14000
+Does it have a long neck?,6000
+Does it moo?,4000
+Is it a dog?,16500
+Is it a cat?,15500
+Is it a hamster?,14500
+Is it a bird?,13500
+Is it a bear?,6500
+Is it a giraffe?,5500
+Is it a horse?,4500
+Is it a cow?,3500
