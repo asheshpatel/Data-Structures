@@ -30,9 +30,9 @@ struct student
  
 struct student* allocate()
 {
-    struct student *ptr = malloc(10 * sizeof(struct student));  // allocate memory for ten students
+    struct student *ptr = malloc(10 * sizeof(struct student));    // allocate memory for ten students
     
-    return ptr;                                                 // return the pointer
+    return ptr;    // return the pointer
 }
 
 
@@ -47,15 +47,15 @@ struct student* allocate()
  
 void generate(struct student* students)
 {
-    int used[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};                  // array of used numbers
+    int used[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};    // array of used numbers
     int id;
     _Bool flag;
-    for (int c = 0; c < 10; c++)                                // fill all ten students
+    for (int c = 0; c < 10; c++)    // fill all ten students
     {
-        do                                                      // continue trying to find unique ID while
-        {                                                       // number has already been used
+        do    // continue trying to find unique ID while number has already been used
+        {
             flag = 0;
-            id = rand() % 10 + 1;                               // make sure number is between 1-10
+            id = rand() % 10 + 1;    // make sure number is between 1-10
             for (int i = 0; i < 9; i++)
             {
                 if (id == used[i])
@@ -63,9 +63,9 @@ void generate(struct student* students)
             }
         } while (flag == 1);
         
-        used[c] = id;                                           // put number into used array
-        students[c].id = id;                                    // set ID
-        students[c].score = rand() % 101;                       // randomly generate score between 0-100 and set score
+        used[c] = id;    // put number into used array
+        students[c].id = id;    // set ID
+        students[c].score = rand() % 101;    // randomly generate score between 0-100 and set score
     }
 }
 
@@ -79,7 +79,7 @@ void generate(struct student* students)
  
 void output(struct student* students)
 {
-    for (int c = 0; c < 10; c++)                                // output information about the ten students
+    for (int c = 0; c < 10; c++)    // output information about the ten students
     {
         printf("ID %i Score %i\n", students[c].id, students[c].score);
     }
@@ -96,11 +96,11 @@ void output(struct student* students)
  
 void summary(struct student* students)
 {
-    int min = 100;                                              // set up initial min, max, and average
+    int min = 100;    // set up initial min, max, and average
     int max = 0;
     double av = 0;
     
-    for (int c = 0; c < 10; c++)                                // compare each student to min and max, then add to average
+    for (int c = 0; c < 10; c++)    // compare each student to min and max, then add to average
     {
         if (students[c].score < min)
             min = students[c].score;
@@ -109,9 +109,8 @@ void summary(struct student* students)
         av = av + students[c].score;
     }
     
-    av = av / 10;                                               // divide sum by number of students for average
-                                                                // display min, max, and average
-    printf("Minimum: %i\nMaximum: %i\nAverage: %f", min, max, av); 
+    av = av / 10;    // divide sum by number of students for average
+    printf("Minimum: %i\nMaximum: %i\nAverage: %f", min, max, av);    // display min, max, and average
 }
 
 
@@ -139,19 +138,14 @@ int main()
 {
     struct student* stud = NULL;
     
-    /*call allocate*/
     stud = allocate();
     
-    /*call generate*/
     generate(stud);
     
-    /*call output*/
     output(stud);
     
-    /*call summary*/
     summary(stud);
     
-    /*call deallocate*/
     deallocate(stud);
     
     return 0;
