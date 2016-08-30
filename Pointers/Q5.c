@@ -48,12 +48,12 @@ char toLowerCase(char ch)
  
 void sticky(char* word)
 {
-    int c = 0;                                                  // count position of letters
-    while (word[c] != '/0')                                     // search every letter
+    int c = 0;    // count position of letters
+    while (word[c] != '/0')    // search every letter
     {
-        if (c % 2 == 0 && word[c] > 90)                         // if even letters are lower case, convert to upper case
+        if (c % 2 == 0 && word[c] > 90)    // if even letters are lower case, convert to upper case
             word[c] = toUpperCase(word[c]);
-        if (c % 2 != 0 && word[c] < 97)                         // if odd letters are upper case, convert to lower case
+        if (c % 2 != 0 && word[c] < 97)    // if odd letters are upper case, convert to lower case
             word[c] = toLowerCase(word[c]);
     }
 }
@@ -69,13 +69,13 @@ void sticky(char* word)
  
 int main()
 {
-    char word[50];                                              // char array to hold word
+    char word[50];    // char array to hold word
     printf("Please enter a word:\n"); fflush(stdout);
-    scanf("%s", word);                                          // get word from user
+    scanf("%s", word);    // get word from user
 
-    sticky(word);                                               // pass word by reference
+    sticky(word);    // pass word by reference
 
-    printf("%s", word);                                         // print sticky caps word
+    printf("%s", word);    // print sticky caps word
     
     return 0;
 }
