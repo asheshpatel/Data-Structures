@@ -1,4 +1,12 @@
-/* 	dynamicArray_a1.h : Dynamic Array implementation. */
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    June 27, 2016
+ * Filename:        dynArray.h
+ *
+ * Overview:
+ * This is the dynamic array implementation
+ ************************************************************/
+
 #ifndef DYNAMIC_ARRAY_INCLUDED
 #define DYNAMIC_ARRAY_INCLUDED 1
 
@@ -40,7 +48,6 @@ TYPE topDynArr(DynArr *v);
 void popDynArr(DynArr *v);
 
 /* Bag Interface */
-/* Note addDynArr is already declared above*/
 int containsDynArr(DynArr *v, TYPE val);
 void removeDynArr(DynArr *v, TYPE val);
 
