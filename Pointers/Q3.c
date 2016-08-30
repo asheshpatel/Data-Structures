@@ -22,15 +22,15 @@
 
 void sort(int* number, int n)
 {
-    int temp;                                                   // temp int to store values during swap
-    _Bool swap;                                                 // bool to indicate swap
+    int temp;    // temp int to store values during swap
+    _Bool swap;    // bool to indicate swap
     
-    do                                                          // continue comparing if swap occurred
+    do    // continue comparing if swap occurred
     {
         swap = 0;
-        for (int c = 0; c < n - 1; c++)                         // compare all elements
+        for (int c = 0; c < n - 1; c++)    // compare all elements
         {
-            if (number[c] > number[c + 1])                      //swap if out of order
+            if (number[c] > number[c + 1])    //swap if out of order
             {
                 temp = number[c];
                 number[c] = number[c + 1];
@@ -52,19 +52,19 @@ void sort(int* number, int n)
  
 int main()
 {
-    int n = 20;                                                 // size of array
+    int n = 20;    // size of array
 
-    int *array = malloc(n);                                     // allocate memory for array
+    int *array = malloc(n);    // allocate memory for array
 
-    for (int c = 0; c < 20; c++)                                // fill array with random numbers
+    for (int c = 0; c < 20; c++)    // fill array with random numbers
         array[c] = rand() % 50;
 
-    for (int c = 0; c < 20; c++)                                // print array
+    for (int c = 0; c < 20; c++)    // print array
         printf("%i ", array[c]);
 
-    sort(array, n);                                             // pass array by reference, and pass size of array
+    sort(array, n);    // pass array by reference, and pass size of array
     
-    printf("\n\n");                                             // print array
+    printf("\n\n");    // print array
     for (int c = 0; c < 20; c++)
         printf("%i ", array[c]);
     
