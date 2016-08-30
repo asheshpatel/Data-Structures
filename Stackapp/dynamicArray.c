@@ -4,9 +4,9 @@
  * Filename:        dynamicArray.c
  *
  * Overview:
- * Dynamic Array implementation
- * Inputs and outputs determined by function
+ * This is the dynamic array implementation
  ************************************************************/
+
 #include <assert.h>
 #include <stdlib.h>
 #include "dynArray.h"
