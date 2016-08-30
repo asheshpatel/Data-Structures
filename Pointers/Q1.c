@@ -141,11 +141,8 @@ int main()
     stud = allocate();
     
     generate(stud);
-    
     output(stud);
-    
     summary(stud);
-    
     deallocate(stud);
     
     return 0;
