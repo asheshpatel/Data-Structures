@@ -250,110 +250,100 @@ int isEmptyDynArr(DynArr *v)
 
 
 /***********************************************************
- * _dynArrSetCapacity: resizes array to given capacity
+ * pushDynArr: pushes an element on top of the stack
  *
- * parameters: pointer to struct and capacity of array.
+ * parameters: pointer to struct and element value.
  * returns: none.
  ***********************************************************/
-/* 	Push an element onto the top of the stack
- 
-	param:	v		pointer to the dynamic array
-	param:	val		the value to push onto the stack
-	pre:	v is not null
-	post:	size increases by 1
- if reached capacity, capacity is doubled
- val is on the top of the stack
- */
+
 void pushDynArr(DynArr *v, TYPE val)
 {
-    assert(v != 0);
+    assert(v != 0);    // assert pointer to struct is not null
     
-    if(v->size >= v->capacity)
+    if(v->size >= v->capacity)    // if size is larger than capacity, resize array
         _dynArrSetCapacity(v, 2 * v->capacity);
     
-    v->data[v->size] = val;
+    v->data[v->size] = val;    // push element on top of stack and increase size
     v->size = v->size + 1;
 }
 
-/*	Returns the element at the top of the stack
- 
-	param:	v		pointer to the dynamic array
-	pre:	v is not null
-	pre:	v is not empty
-	post:	no changes to the stack
- */
+
+/***********************************************************
+ * topDynArr: returns element value at top of stack
+ *
+ * parameters: pointer to struct.
+ * returns: element value.
+ ***********************************************************/
+
 TYPE topDynArr(DynArr *v)
 {
-    assert(v != 0);
+    assert(v != 0);    // assert pointer to struct is not null and array is not empty
     assert(v->size > 0);
     
-    return v->data[v->size-1];
+    return v->data[v->size-1];    // return value of top element
 }
 
-/* Removes the element on top of the stack
- 
-	param:	v		pointer to the dynamic array
-	pre:	v is not null
-	pre:	v is not empty
-	post:	size is decremented by 1
- the top has been removed
- */
+
+/***********************************************************
+ * popDynArr: removes element on top of stack
+ *
+ * parameters: pointer to struct.
+ * returns: none.
+ ***********************************************************/
+
 void popDynArr(DynArr *v)
 {
-    assert(v != 0);
+    assert(v != 0);    // assert pointer to struct is not null and array is not empty
     assert(v->size > 0);
     
-    removeAtDynArr(v, v->size-1);
+    removeAtDynArr(v, v->size-1);    // remove element at top of stack
 }
+
 
 /* ************************************************************************
 	Bag Interface Functions
  ************************************************************************ */
 
-/*	Returns boolean (encoded as an int) demonstrating whether or not
-	the specified value is in the collection
-	true = 1
-	false = 0
- 
-	param:	v		pointer to the dynamic array
-	param:	val		the value to look for in the bag
-	pre:	v is not null
-	pre:	v is not empty
-	post:	no changes to the bag
- */
+/***********************************************************
+ * containsDynArr: returns boolean as int (1 if empty, 0 if not) 
+ * 		to show if array contains specified value
+ *
+ * parameters: pointer to struct and value to look for.
+ * returns: boolean as int.
+ ***********************************************************/
+
 int containsDynArr(DynArr *v, TYPE val)
 {
     int i;
     
-    for (i = 0; i < v->size; i++)
+    for (i = 0; i < v->size; i++)    // search all elements
     {
         if(v->data[i] == val)
-            return 1;
+            return 1;    // return true if found and end search
     }
     
-    return 0;
+    return 0;    // return false if not found in array
 }
 
-/*	Removes the first occurrence of the specified value from the collection
-	if it occurs
- 
-	param:	v		pointer to the dynamic array
-	param:	val		the value to remove from the array
-	pre:	v is not null
-	pre:	v is not empty
-	post:	val has been removed
-	post:	size of the bag is reduced by 1
- */
+
+/***********************************************************
+ * removeDynArr: removes first occurrence of specified value 
+ * 		if it is found in array
+ *
+ * parameters: pointer to struct and value to look for.
+ * returns: none.
+ ***********************************************************/
+
 void removeDynArr(DynArr *v, TYPE val)
 {
     int i = 0;
     int a;
-    while(!EQ(v->data[i], val))
+    while(!EQ(v->data[i], val))    // search array until element is found
         i++;
     
-    for(a = i; a < v->size-1; a++)
+    for(a = i; a < v->size-1; a++)    // move elements greater than position of found element back one
     {
         v->data[a] = v->data[a+1];
-        v->size = v->size-1;
+        v->size = v->size-1;    // decrease size of array
     }
 }
