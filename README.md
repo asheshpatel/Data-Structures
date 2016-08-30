@@ -1,4 +1,5 @@
-# Class Descriptions and Languages Used
+# Data Structures
 
-<b>CS 261:</b> Data Structures (Languages: C)<br>
-<b>CS 271:</b> Computer Architecture and Assembly (Languages: MASM)
+<b>Language Used: C</b><br><br>
+
+
