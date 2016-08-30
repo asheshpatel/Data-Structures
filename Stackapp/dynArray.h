@@ -1,6 +1,6 @@
 /***********************************************************
  * Author:          Kelsey Helms
- * Date Created:    June 27, 2016
+ * Date Created:    July 8, 2016
  * Filename:        dynArray.h
  *
  * Overview:
@@ -29,12 +29,9 @@ typedef struct DynArr DynArr;
 /* Dynamic Array Functions */
 void initDynArr(DynArr *v, int capacity);
 DynArr *newDynArr(int cap);
-
 void freeDynArr(DynArr *v);
 void deleteDynArr(DynArr *v);
-
 int sizeDynArr(DynArr *v);
-
 void addDynArr(DynArr *v, TYPE val);
 TYPE getDynArr(DynArr *v, int pos);
 void putDynArr(DynArr *v, int pos, TYPE val);
