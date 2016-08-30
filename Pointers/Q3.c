@@ -22,7 +22,6 @@
 
 void sort(int* number, int n)
 {
-    /*Sort the given array number, of length n*/
     int temp;                                                   // temp int to store values during swap
     _Bool swap;                                                 // bool to indicate swap
     
