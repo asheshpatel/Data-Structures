@@ -4,7 +4,7 @@
  * Filename:        dynArray.h
  *
  * Overview:
- * This is the dynamic array implementation
+ * This is the dynamic array header file
  ************************************************************/
 
 #ifndef DYNAMIC_ARRAY_INCLUDED
