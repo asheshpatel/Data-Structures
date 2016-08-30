@@ -22,11 +22,11 @@
  
 void fooA(int* iptr)
 {
-    printf("%i\n", *iptr);                                   // print the value pointed to by pointer
+    printf("%i\n", *iptr);    // print the value pointed to by pointer
 
-    printf("%p\n", &(*iptr));                                // print the address pointed to by pointer
+    printf("%p\n", &(*iptr));    // print the address pointed to by pointer
 
-    printf("%p\n", iptr);                                    // print the address of the pointer itself
+    printf("%p\n", iptr);    // print the address of the pointer itself
 }
 
 
@@ -40,13 +40,13 @@ void fooA(int* iptr)
  
 int main()
 {
-    int x = 3;                                                // declare and initialize x
+    int x = 3;    // declare and initialize x
     
-    printf("%p\n", &x);                                       // print address of x
+    printf("%p\n", &x);    // print address of x
 
-    fooA(&x);                                                 // call fooA with address of x
+    fooA(&x);    // call fooA with address of x
 
-    printf("%i\n", x);                                        // print the value of x
+    printf("%i\n", x);    // print the value of x
     
     return 0;
 }
