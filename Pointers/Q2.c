@@ -24,11 +24,11 @@
  
 int foo(int* a, int* b, int c)
 {
-    *a = *a * 2;                                                // sets a to double original value
+    *a = *a * 2;    // sets a to double original value
 
-    *b = *b / 2;                                                // sets b to half original value
+    *b = *b / 2;    // sets b to half original value
 
-    c = *a + *b;                                                // assigns c to sum of a + b
+    c = *a + *b;    // assigns c to sum of a + b
 
     return c;
 }
@@ -45,18 +45,18 @@ int foo(int* a, int* b, int c)
  
 int main()
 {
-    int x = 5;                                                  // declare and initialize three variables and a value to 
-    int y = 6;                                                  // capture returned value
+    int x = 5;    // declare and initialize three variables and a value to capture returned value
+    int y = 6;
     int z = 7;
     int returned;
 
-    printf("%i\n%i\n%i\n", x, y, z);                            // print values of variables
+    printf("%i\n%i\n%i\n", x, y, z);    // print values of variables
     
-    returned = foo(&x, &y, z);                                  // pass addresses of a and b and value of c to foo
+    returned = foo(&x, &y, z);    // pass addresses of a and b and value of c to foo
 
-    printf("%i\n", returned);                                   // print value returned by foo
+    printf("%i\n", returned);    // print value returned by foo
 
-    printf("%i\n%i\n%i\n", x, y, z);                            // print values of variables
+    printf("%i\n%i\n%i\n", x, y, z);    // print values of variables
     
     return 0;
 }
