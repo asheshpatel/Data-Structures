@@ -9,6 +9,6 @@
 *Sets pointer foundation for use in data structures.*<br><br>
 <b>Stackapp:</b> Checks a string for balanced brackets.<br>
 *Data Structure Used: Dynamic Array*<br>
-*ADT Used:*<br>Stack, Bag<br>
+*ADT Used: Stack, Bag*<br><br>
 <b></b>
 
