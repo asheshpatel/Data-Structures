@@ -1,3 +1,12 @@
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    July 11, 2016
+ * Filename:        circularList.h
+ *
+ * Overview:
+ * This is the circular linked list header file
+ ************************************************************/
+
 #ifndef CIRCULAR_LIST_H
 #define CIRCULAR_LIST_H
 
@@ -20,8 +29,7 @@ void circularListDestroy(struct CircularList* list);
 void circularListPrint(struct CircularList* list);
 void circularListReverse(struct CircularList* list);
 
-// Deque interface
-
+/* Deque interface */
 void circularListAddFront(struct CircularList* list, TYPE value);
 void circularListAddBack(struct CircularList* list, TYPE value);
 TYPE circularListFront(struct CircularList* list);
