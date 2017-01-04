@@ -1,7 +1,7 @@
 /*
  * CS 261 Data Structures
  * Assignment 7
- * Author: Sean Moore
+ * Author: Kelsey Helms
  * Date: 5/18/2016
  */
 
