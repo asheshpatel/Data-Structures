@@ -12,17 +12,17 @@
 
 #ifndef __TYPE
 #define __TYPE
-# define TYPE      int
-# define TYPE_SIZE sizeof(int)
-# endif
+#define TYPE      int
+#define TYPE_SIZE sizeof(int)
+#endif
 
-# ifndef LT
-# define LT(A, B) ((A) < (B))
-# endif
+#ifndef LT
+#define LT(A, B) ((A) < (B))
+#endif
 
-# ifndef EQ
-# define EQ(A, B) ((A) == (B))
-# endif
+#ifndef EQ
+#define EQ(A, B) ((A) == (B))
+#endif
 
 typedef struct DynArr DynArr;
 
