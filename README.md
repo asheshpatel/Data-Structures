@@ -25,7 +25,7 @@
 *Data Structure Used: Dynamic Array*<br>
 *ADT Used: Stack, Bag*<br><br>
 
-<b>ToDoList:</b> Implements iterative versions of BFS and DFS and a recursive version of DFS.<br>
+<b>ToDoList:</b> Manages prioritized to-do list based on user's priority ranking.<br>
 *Data Structure Used: Dynamic Array*<br>
 *ADT Used: Heap*<br><br>
 
