@@ -4,36 +4,37 @@
  * Filename:        circularList.c
  *
  * Overview:
- * This program is an implementation of circular linked
- * list functions.
- *
- * Inputs and outputs are defined by functions.
+ * This is the circular linked list implementation file
  ************************************************************/
-
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include "circularList.h"
 
-// Double link
 struct Link
 {
-    TYPE value;
-    struct Link * next;
-    struct Link * prev;
+    TYPE value;    // link value
+    struct Link * next;    // pointer to next link
+    struct Link * prev;    // pointer to previous link
 };
 
 struct CircularList
 {
-    int size;
-    struct Link* sentinel;
+    int size;    // size of circular list
+    struct Link* sentinel;    // pointer to list sentinel
 };
 
-/**
- * Allocates the list's sentinel and sets the size to 0.
- * The sentinel's next and prev should point to the sentinel itself.
- */
+
+/***********************************************************
+ * init: allocates the list's sentinel and sets the size 
+ * to 0. The sentinel's next and prev should point to 
+ * the sentinel itself.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 static void init(struct CircularList* list)
 {
     assert(list != 0);
@@ -44,9 +45,14 @@ static void init(struct CircularList* list)
     list->sentinel->prev = list->sentinel;
 }
 
-/**
- * Creates a link with the given value and NULL next and prev pointers.
- */
+
+/***********************************************************
+ * createLink: creates a link.
+ *
+ * parameters: value of link.
+ * returns: link.
+ ***********************************************************/
+
 static struct Link* createLink(TYPE value)
 {
     struct Link* newLink = (struct Link *)malloc(sizeof(struct Link));
@@ -57,10 +63,15 @@ static struct Link* createLink(TYPE value)
     return(newLink);
 }
 
-/**
- * Adds a new link with the given value after the given link and
- * increments the list's size.
- */
+
+/***********************************************************
+ * addLinkAfter: adds a new link after the given link.
+ *
+ * parameters: pointer to circular list struct, given link, 
+ * value of new link.
+ * returns: none.
+ ***********************************************************/
+
 static void addLinkAfter(struct CircularList* list, struct Link* link, TYPE value)
 {
     assert(list != 0);
@@ -73,10 +84,14 @@ static void addLinkAfter(struct CircularList* list, struct Link* link, TYPE valu
     list->size++;
 }
 
-/**
- * Removes the given link from the list and
- * decrements the list's size.
- */
+
+/***********************************************************
+ * removeLink: removes a given link.
+ *
+ * parameters: pointer to circular list struct, given link.
+ * returns: none.
+ ***********************************************************/
+
 static void removeLink(struct CircularList* list, struct Link* link)
 {
     assert(list != 0);
@@ -88,9 +103,14 @@ static void removeLink(struct CircularList* list, struct Link* link)
     list->size--;
 }
 
-/**
- * Allocates and initializes a list.
- */
+
+/***********************************************************
+ * circularListCreate: allocates and initializes a list.
+ *
+ * parameters: none.
+ * returns: pointer to circular list struct.
+ ***********************************************************/
+
 struct CircularList* circularListCreate()
 {
     struct CircularList* list = malloc(sizeof(struct CircularList));
@@ -98,9 +118,15 @@ struct CircularList* circularListCreate()
     return list;
 }
 
-/**
- * Deallocates every link in the list and frees the list pointer.
- */
+
+/***********************************************************
+ * circularListDestroy: deallocates every link in the list
+ * and frees the list pointer.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 void circularListDestroy(struct CircularList* list)
 {
     assert(list != 0);
@@ -111,27 +137,45 @@ void circularListDestroy(struct CircularList* list)
     free(list);
 }
 
-/**
- * Adds a new link with the given value to the front of the deque.
- */
+
+/***********************************************************
+ * circularListAddFront: adds a new link with the given
+ * value to the front of the deque.
+ *
+ * parameters: pointer to circular list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
 void circularListAddFront(struct CircularList* list, TYPE value)
 {
     assert(list != 0);
     addLinkAfter(list, list->sentinel, value);
 }
 
-/**
- * Adds a new link with the given value to the back of the deque.
- */
+
+/***********************************************************
+ * circularListAddBack: adds a new link with the given value
+ * to the back of the deque.
+ *
+ * parameters: pointer to circular list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
 void circularListAddBack(struct CircularList* list, TYPE value)
 {
     assert(list != 0);
     addLinkAfter(list, list->sentinel->prev, value);
 }
 
-/**
- * Returns the value of the link at the front of the deque.
- */
+
+/***********************************************************
+ * circularListFront: returns the value of the link at the
+ * front of the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: front link value.
+ ***********************************************************/
+
 TYPE circularListFront(struct CircularList* list)
 {
     assert(list != 0);
@@ -139,9 +183,15 @@ TYPE circularListFront(struct CircularList* list)
     return(list->sentinel->next->value);
 }
 
-/**
- * Returns the value of the link at the back of the deque.
- */
+
+/***********************************************************
+ * circularListBack: returns the value of the link at the
+ * back of the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: back link value.
+ ***********************************************************/
+
 TYPE circularListBack(struct CircularList* list)
 {
     assert(list != 0);
@@ -149,9 +199,15 @@ TYPE circularListBack(struct CircularList* list)
     return(list->sentinel->prev->value);
 }
 
-/**
- * Removes the link at the front of the deque.
- */
+
+/***********************************************************
+ * circularListRemoveFront: removes the link at the front
+ * of the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 void circularListRemoveFront(struct CircularList* list)
 {
     assert(list != 0);
@@ -159,9 +215,15 @@ void circularListRemoveFront(struct CircularList* list)
     removeLink(list, list->sentinel->next);
 }
 
-/**
- * Removes the link at the back of the deque.
- */
+
+/***********************************************************
+ * circularListRemoveBack: removes the link at the back
+ * of the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 void circularListRemoveBack(struct CircularList* list)
 {
     assert(list != 0);
@@ -169,18 +231,30 @@ void circularListRemoveBack(struct CircularList* list)
     removeLink(list, list->sentinel->prev);
 }
 
-/**
- * Returns 1 if the deque is empty and 0 otherwise.
- */
+
+/***********************************************************
+ * circularListIsEmpty: returns 1 if the deque is empty 
+ * and 0 otherwise.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: int.
+ ***********************************************************/
+
 int circularListIsEmpty(struct CircularList* list)
 {
     assert(list != 0);
     return(list->size == 0);
 }
 
-/**
- * Prints the values of the links in the deque from front to back.
- */
+
+/***********************************************************
+ * circularListPrint: prints the values of the links in the
+ * deque from front to back.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 void circularListPrint(struct CircularList* list)
 {
     assert(list != 0);
@@ -194,9 +268,14 @@ void circularListPrint(struct CircularList* list)
     }
 }
 
-/**
- * Reverses the deque.
- */
+
+/***********************************************************
+ * circularListReverse: reverses the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
 void circularListReverse(struct CircularList* list)
 {
     assert(list != 0);
@@ -207,7 +286,8 @@ void circularListReverse(struct CircularList* list)
     do
     {
         temp = current->next;
-        if(temp->next == list->sentinel){
+        if(temp->next == list->sentinel)
+        {
             list->sentinel->next = temp;
         }
         current->next = current->prev;
