@@ -3,7 +3,7 @@
 
 /*
  * CS 261 Data Structures
- * Name: Sean Moore
+ * Name: Kelsey Helms
  * Date: April 27, 2016
  */
 
