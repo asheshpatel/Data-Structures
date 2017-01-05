@@ -26,6 +26,10 @@ struct CircularList
 };
 
 
+/* ************************************************************************
+	Helper Functions
+ ************************************************************************ */
+
 /***********************************************************
  * init: allocates the list's sentinel and sets the size 
  * to 0. The sentinel's next and prev should point to 
@@ -104,6 +108,10 @@ static void removeLink(struct CircularList* list, struct Link* link)
 }
 
 
+/* ************************************************************************
+	Circular Linked List Functions
+ ************************************************************************ */
+
 /***********************************************************
  * circularListCreate: allocates and initializes a list.
  *
@@ -137,6 +145,60 @@ void circularListDestroy(struct CircularList* list)
     free(list);
 }
 
+
+/***********************************************************
+ * circularListPrint: prints the values of the links in the
+ * deque from front to back.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
+void circularListPrint(struct CircularList* list)
+{
+    assert(list != 0);
+    assert(list->size != 0);
+    struct Link* current = list->sentinel->next;
+    assert(current != 0);
+    while(current != list->sentinel)
+    {
+        printf("%f\n", current->value);
+        current = current->next;
+    }
+}
+
+
+/***********************************************************
+ * circularListReverse: reverses the deque.
+ *
+ * parameters: pointer to circular list struct.
+ * returns: none.
+ ***********************************************************/
+
+void circularListReverse(struct CircularList* list)
+{
+    assert(list != 0);
+    assert(list->size != 0);
+    struct Link* current = list->sentinel->next;
+    struct Link* temp;
+    list->sentinel->prev = current;
+    do
+    {
+        temp = current->next;
+        if(temp->next == list->sentinel)
+        {
+            list->sentinel->next = temp;
+        }
+        current->next = current->prev;
+        current->prev = temp;
+        current = temp;
+    } while(current != list->sentinel);
+}
+
+
+/* ************************************************************************
+	Deque Interface Functions
+ ************************************************************************ */
 
 /***********************************************************
  * circularListAddFront: adds a new link with the given
@@ -244,54 +306,4 @@ int circularListIsEmpty(struct CircularList* list)
 {
     assert(list != 0);
     return(list->size == 0);
-}
-
-
-/***********************************************************
- * circularListPrint: prints the values of the links in the
- * deque from front to back.
- *
- * parameters: pointer to circular list struct.
- * returns: none.
- ***********************************************************/
-
-void circularListPrint(struct CircularList* list)
-{
-    assert(list != 0);
-    assert(list->size != 0);
-    struct Link* current = list->sentinel->next;
-    assert(current != 0);
-    while(current != list->sentinel)
-    {
-        printf("%f\n", current->value);
-        current = current->next;
-    }
-}
-
-
-/***********************************************************
- * circularListReverse: reverses the deque.
- *
- * parameters: pointer to circular list struct.
- * returns: none.
- ***********************************************************/
-
-void circularListReverse(struct CircularList* list)
-{
-    assert(list != 0);
-    assert(list->size != 0);
-    struct Link* current = list->sentinel->next;
-    struct Link* temp;
-    list->sentinel->prev = current;
-    do
-    {
-        temp = current->next;
-        if(temp->next == list->sentinel)
-        {
-            list->sentinel->next = temp;
-        }
-        current->next = current->prev;
-        current->prev = temp;
-        current = temp;
-    } while(current != list->sentinel);
 }
