@@ -1,3 +1,12 @@
+/***********************************************************
+ * Author:          Kelsey Helms
+ * Date Created:    July 11, 2016
+ * Filename:        linkedList.h
+ *
+ * Overview:
+ * This is the linked list header file
+ ************************************************************/
+
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
@@ -19,8 +28,7 @@ struct LinkedList* linkedListCreate();
 void linkedListDestroy(struct LinkedList* list);
 void linkedListPrint(struct LinkedList* list);
 
-// Deque interface
-
+/* Deque interface */
 int linkedListIsEmpty(struct LinkedList* list);
 void linkedListAddFront(struct LinkedList* list, TYPE value);
 void linkedListAddBack(struct LinkedList* list, TYPE value);
@@ -29,8 +37,7 @@ TYPE linkedListBack(struct LinkedList* list);
 void linkedListRemoveFront(struct LinkedList* list);
 void linkedListRemoveBack(struct LinkedList* list);
 
-// Bag interface
-
+/* Bag interface */
 void linkedListAdd(struct LinkedList* list, TYPE value);
 int linkedListContains(struct LinkedList* list, TYPE value);
 void linkedListRemove(struct LinkedList* list, TYPE value);
