@@ -1,41 +1,45 @@
 /***********************************************************
  * Author:          Kelsey Helms
  * Date Created:    July 11, 2016
- * Filename:        linkedList.c
+ * Filename:        linkedList. 
  *
  * Overview:
- * This program implements different linked list functions.
- *
- * Input and outputs are defined by function.
+ * This is the linked list implementation file
  ************************************************************/
-
 
 #include "linkedList.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-// Double link
 struct Link
 {
-    TYPE value;
-    struct Link* next;
-    struct Link* prev;
+    TYPE value;    // link value
+    struct Link* next;    // pointer to next link
+    struct Link* prev;    // pointer to previous link
 };
 
-// Double linked list with front and back sentinels
 struct LinkedList
 {
-    int size;
-    struct Link* frontSentinel;
-    struct Link* backSentinel;
+    int size;    // size of linked list
+    struct Link* frontSentinel;    // pointer to front sentinel
+    struct Link* backSentinel;    // pointer to back sentinel
 };
 
-/**
- * Allocates the list's sentinel and sets the size to 0.
- * The sentinels' next and prev should point to eachother or NULL
- * as appropriate.
- */
+
+/* ************************************************************************
+	Helper Functions
+ ************************************************************************ */
+
+/***********************************************************
+ * init: allocates the list's sentinel and sets the size 
+ * to 0. The sentinel's next and prev should point to 
+ * each other or NULL as appropriate.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: none.
+ ***********************************************************/
+
 static void init(struct LinkedList* list)
 {
     list->frontSentinel = malloc(sizeof(struct Link));
@@ -47,10 +51,16 @@ static void init(struct LinkedList* list)
     list->size = 0;
 }
 
-/**
- * Adds a new link with the given value before the given link and
- * increments the list's size.
- */
+
+/***********************************************************
+ * addLinkBefore: adds a new link with the given value
+ * before the given link and increments the list's size.
+ *
+ * parameters: pointer to linked list struct, given link,
+ * given value.
+ * returns: none.
+ ***********************************************************/
+
 static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value)
 {
     struct Link* newLink = malloc(sizeof(struct Link));
@@ -63,10 +73,15 @@ static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value
     list->size++;
 }
 
-/**
- * Removes the given link from the list and
+
+/***********************************************************
+ * removeLink: removes the given link frm the list and 
  * decrements the list's size.
- */
+ *
+ * parameters: pointer to linked list struct, given link.
+ * returns: none.
+ ***********************************************************/
+
 static void removeLink(struct LinkedList* list, struct Link* link)
 {
     assert(!linkedListIsEmpty(list));
@@ -76,9 +91,18 @@ static void removeLink(struct LinkedList* list, struct Link* link)
     list->size--;
 }
 
-/**
- * Allocates and initializes a list.
- */
+
+/* ************************************************************************
+	Linked List Functions
+ ************************************************************************ */
+
+/***********************************************************
+ * linkedListCreate: allocates and initializes a list.
+ *
+ * parameters: none.
+ * returns: pointer to linked list struct.
+ ***********************************************************/
+
 struct LinkedList* linkedListCreate()
 {
     struct LinkedList* newDeque = malloc(sizeof(struct LinkedList));
@@ -86,10 +110,15 @@ struct LinkedList* linkedListCreate()
     return newDeque;
 }
 
-/**
- * Deallocates every link in the list including the sentinels,
- * and frees the list itself.
- */
+
+/***********************************************************
+ * linkedListDestroy: deallocates every link in the list
+ * including the sentinels, and frees the list itself.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: none.
+ ***********************************************************/
+
 void linkedListDestroy(struct LinkedList* list)
 {
     while (!linkedListIsEmpty(list))
@@ -101,69 +130,15 @@ void linkedListDestroy(struct LinkedList* list)
     free(list);
 }
 
-/**
- * Adds a new link with the given value to the front of the deque.
- */
-void linkedListAddFront(struct LinkedList* list, TYPE value)
-{
-    addLinkBefore(list, list->frontSentinel->next, value);
-}
 
-/**
- * Adds a new link with the given value to the back of the deque.
- */
-void linkedListAddBack(struct LinkedList* list, TYPE value)
-{
-    addLinkBefore(list, list->backSentinel, value);
-}
+/***********************************************************
+ * linkedListPrint: prints the values of the links in the 
+ * deque from front to back.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: none.
+ ***********************************************************/
 
-/**
- * Returns the value of the link at the front of the deque.
- */
-TYPE linkedListFront(struct LinkedList* list)
-{
-    assert(!linkedListIsEmpty(list));
-    return list->frontSentinel->next->value;
-}
-
-/**
- * Returns the value of the link at the back of the deque.
- */
-TYPE linkedListBack(struct LinkedList* list)
-{
-    assert(!linkedListIsEmpty(list));
-    return list->backSentinel->prev->value;
-}
-
-/**
- * Removes the link at the front of the deque.
- */
-void linkedListRemoveFront(struct LinkedList* list)
-{
-    assert(!linkedListIsEmpty(list));
-    removeLink(list, list->frontSentinel->next);
-}
-
-/**
- * Removes the link at the back of the deque.
- */
-void linkedListRemoveBack(struct LinkedList* list)
-{
-    assert(!linkedListIsEmpty(list));
-    removeLink(list, list->backSentinel->prev);
-}
-
-/**
- * Returns 1 if the deque is empty and 0 otherwise.
- */
-int linkedListIsEmpty(struct LinkedList* list)
-{
-    return list->size == 0;
-}
-
-/**
- * Prints the values of the links in the deque from front to back.
- */
 void linkedListPrint(struct LinkedList* list)
 {
     struct Link *current;
@@ -177,17 +152,139 @@ void linkedListPrint(struct LinkedList* list)
     }
 }
 
-/**
- * Adds a link with the given value to the bag.
- */
+
+/* ************************************************************************
+	Deque Interface Functions
+ ************************************************************************ */
+
+
+/***********************************************************
+ * linkedListIsEmpty: returns 1 if the deque is empty and 
+ * 0 otherwise.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: int.
+ ***********************************************************/
+
+int linkedListIsEmpty(struct LinkedList* list)
+{
+    return list->size == 0;
+}
+
+
+/***********************************************************
+ * linkedListAddFront: adds a new link with the given value
+ * to the front of the deque.
+ *
+ * parameters: pointer to linked list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
+void linkedListAddFront(struct LinkedList* list, TYPE value)
+{
+    addLinkBefore(list, list->frontSentinel->next, value);
+}
+
+
+/***********************************************************
+ * linkedListAddBack: adds a new link with the given value
+ * to the back of the deque.
+ *
+ * parameters: pointer to linked list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
+void linkedListAddBack(struct LinkedList* list, TYPE value)
+{
+    addLinkBefore(list, list->backSentinel, value);
+}
+
+
+/***********************************************************
+ * linkedListFront: returns the value of the link at the
+ * front of the deque.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: front link value.
+ ***********************************************************/
+
+TYPE linkedListFront(struct LinkedList* list)
+{
+    assert(!linkedListIsEmpty(list));
+    return list->frontSentinel->next->value;
+}
+
+
+/***********************************************************
+ * linkedListBack: returns the value of the link at the
+ * back of the deque.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: back link value.
+ ***********************************************************/
+
+TYPE linkedListBack(struct LinkedList* list)
+{
+    assert(!linkedListIsEmpty(list));
+    return list->backSentinel->prev->value;
+}
+
+
+/***********************************************************
+ * linkedListRemoveFront: removes the link at the front
+ * of the deque.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: none.
+ ***********************************************************/
+
+void linkedListRemoveFront(struct LinkedList* list)
+{
+    assert(!linkedListIsEmpty(list));
+    removeLink(list, list->frontSentinel->next);
+}
+
+
+/***********************************************************
+ * linkedListRemoveBack: removes the link at the back
+ * of the deque.
+ *
+ * parameters: pointer to linked list struct.
+ * returns: none.
+ ***********************************************************/
+
+void linkedListRemoveBack(struct LinkedList* list)
+{
+    assert(!linkedListIsEmpty(list));
+    removeLink(list, list->backSentinel->prev);
+}
+
+
+/* ************************************************************************
+	Bag Interface Functions
+ ************************************************************************ */
+
+/***********************************************************
+ * linkedListAdd: adds a link with the given value to the bag.
+ *
+ * parameters: pointer to linked list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
 void linkedListAdd(struct LinkedList* list, TYPE value)
 {
      addLinkBefore(list, list->frontSentinel->next, value);
 }
 
-/**
- * Returns 1 if a link with the value is in the bag and 0 otherwise.
- */
+
+/***********************************************************
+ * linkedListContains: returns 1 if a link with the value
+ * is in the bag and 0 otherwise.
+ *
+ * parameters: pointer to linked list struct, given value.
+ * returns: int.
+ ***********************************************************/
+
 int linkedListContains(struct LinkedList* list, TYPE value)
 {
     struct Link *current;
@@ -203,9 +300,15 @@ int linkedListContains(struct LinkedList* list, TYPE value)
     return 0;
 }
 
-/**
- * Removes the first occurrence of a link with the given value.
- */
+
+/***********************************************************
+ * linkedListRemove: removes the first occurence of a link 
+ * with the given value.
+ *
+ * parameters: pointer to linked list struct, given value.
+ * returns: none.
+ ***********************************************************/
+
 void linkedListRemove(struct LinkedList* list, TYPE value)
 {
     struct Link *current;
